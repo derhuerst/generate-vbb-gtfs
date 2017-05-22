@@ -1,0 +1,19 @@
+{
+	"name":         "generate-vbb-gtfs",
+	"description":  "Generate clean GTFS from VBB data.",
+	"version":      "0.1.0",
+	"main":         "index.js",
+	"files":        ["index.js"],
+	"keywords":     ["gtfs", "public transport", "vbb"],
+	"author":       "Jannis R <mail@jannisr.de>",
+	"homepage":     "https://github.com/derhuerst/generate-vbb-gtfs",
+	"repository":   "derhuerst/generate-vbb-gtfs",
+	"bugs":         "https://github.com/derhuerst/generate-vbb-gtfs/issues",
+	"license":      "ISC",
+	"engines":      {"node": ">=6"},
+	"dependencies": {
+	},
+	"scripts": {
+		"build": "node index.js"
+	}
+}

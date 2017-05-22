@@ -1,7 +1,7 @@
 'use strict'
 
 const trips = require('vbb-trips')
-const pkg = require('./package.json')
+const pkg = require('../package.json')
 
 const formatDate = (d) => {
 	return [

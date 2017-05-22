@@ -3,14 +3,7 @@
 	"description":  "Generate clean GTFS from VBB data.",
 	"version":      "0.1.0",
 	"main":         "index.js",
-	"files":        [
-		"index.js",
-		"generate-routes.js",
-		"generate-stops.js",
-		"generate-trips.js",
-		"generate-stop-times.js",
-		"generate-feed-info.js"
-	],
+	"files":        ["build", "dest"],
 	"keywords":     ["gtfs", "public transport", "vbb"],
 	"author":       "Jannis R <mail@jannisr.de>",
 	"homepage":     "https://github.com/derhuerst/generate-vbb-gtfs",
@@ -22,12 +15,18 @@
 		"csv-write-stream": "^2.0.0",
 		"from": "^2.3.0",
 		"pump": "^1.0.2",
+		"redrun": "^5.9.12",
 		"through2": "^2.0.3",
 		"vbb-lines": "^3.2.0",
 		"vbb-stations": "^5.2.0",
 		"vbb-trips": "^2.3.0"
 	},
 	"scripts": {
-		"build": "node index.js"
+		"build": "redrun -p feed-info stops routes trips stop-times",
+		"feed-info": "node build/feed-info.js > dest/feed_info.txt",
+		"stops": "node build/stops.js > dest/stops.txt",
+		"routes": "node build/routes.js > dest/routes.txt",
+		"trips": "node build/trips.js > dest/trips.txt",
+		"stop-times": "node build/stop-times.js > dest/stop_times.txt"
 	}
 }

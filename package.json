@@ -3,7 +3,11 @@
 	"description":  "Generate clean GTFS from VBB data.",
 	"version":      "0.1.0",
 	"main":         "index.js",
-	"files":        ["index.js"],
+	"files":        [
+		"index.js",
+		"generate-routes.js",
+		"generate-stops.js"
+	],
 	"keywords":     ["gtfs", "public transport", "vbb"],
 	"author":       "Jannis R <mail@jannisr.de>",
 	"homepage":     "https://github.com/derhuerst/generate-vbb-gtfs",
@@ -12,6 +16,12 @@
 	"license":      "ISC",
 	"engines":      {"node": ">=6"},
 	"dependencies": {
+		"csv-write-stream": "^2.0.0",
+		"from": "^2.3.0",
+		"pump": "^1.0.2",
+		"through2": "^2.0.3",
+		"vbb-lines": "^3.2.0",
+		"vbb-stations": "^5.2.0"
 	},
 	"scripts": {
 		"build": "node index.js"

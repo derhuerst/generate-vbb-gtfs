@@ -13,7 +13,7 @@
 	"engines":      {"node": ">=6"},
 	"dependencies": {
 		"csv-write-stream": "^2.0.0",
-		"from": "^2.3.0",
+		"from2": "^2.3.0",
 		"pump": "^1.0.2",
 		"redrun": "^5.9.12",
 		"through2": "^2.0.3",

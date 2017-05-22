@@ -8,7 +8,8 @@
 		"generate-routes.js",
 		"generate-stops.js",
 		"generate-trips.js",
-		"generate-stop-times.js"
+		"generate-stop-times.js",
+		"generate-feed-info.js"
 	],
 	"keywords":     ["gtfs", "public transport", "vbb"],
 	"author":       "Jannis R <mail@jannisr.de>",

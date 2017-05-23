@@ -1,5 +1,7 @@
 # generate-vbb-gtfs
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/derhuerst/generate-vbb-gtfs.svg)](https://greenkeeper.io/)
+
 **Generate clean GTFS from [VBB data](https://github.com/derhuerst/vbb-modules#static-data).**
 
 [![npm version](https://img.shields.io/npm/v/generate-vbb-gtfs.svg)](https://www.npmjs.com/package/generate-vbb-gtfs)

@@ -4,12 +4,7 @@ const pump = require('pump')
 const lines = require('vbb-lines')
 const through = require('through2')
 const csv = require('csv-write-stream')
-
-const showError = (err) => {
-	if (!err) return
-	console.error(err)
-	process.exit(1)
-}
+const {showError} = require('./lib')
 
 // todo: https://developers.google.com/transit/gtfs/reference/extended-route-types
 const typesByProduct = {

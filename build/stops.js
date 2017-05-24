@@ -5,12 +5,7 @@ const pump = require('pump')
 const from = require('from2')
 const through = require('through2')
 const csv = require('csv-write-stream')
-
-const showError = (err) => {
-	if (!err) return
-	console.error(err)
-	process.exit(1)
-}
+const {showError} = require('./lib')
 
 const readStations = () => {
 	const keys = (function* (obj) {

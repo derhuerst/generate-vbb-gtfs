@@ -6,25 +6,12 @@ const trips = require('vbb-trips')
 const through = require('through2')
 const stations = require('vbb-stations/data.json')
 const csv = require('csv-write-stream')
+const {formatTime, showError} = require('./lib')
 
 const stationOf = {}
 for (let id in all) {
 	stationOf[id] = id
 	for (let stop of all[id].stops) stationOf[stop.id] = id
-}
-
-const showError = (err) => {
-	if (!err) return
-	console.error(err)
-	process.exit(1)
-}
-
-const formatTime = (ms) => {
-	return [
-		Math.floor(ms / 1000 / 60 / 60),
-		('' + Math.floor(ms / 1000 / 60)).slice(-2),
-		('' + Math.floor(ms / 1000)).slice(-2)
-	].join(':')
 }
 
 pump(

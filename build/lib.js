@@ -10,7 +10,7 @@ const formatDate = (d) => {
 	].join('')
 }
 
-const formatTime = (ms) => {
+const formatDuration = (ms) => {
 	return [
 		Math.floor(ms / 1000 / 60 / 60),
 		('0' + Math.floor(ms / 1000 / 60)).slice(-2),
@@ -48,4 +48,4 @@ const readTimeFrame = () => {
 	})
 }
 
-module.exports = {formatDate, formatTime, showError, readTimeFrame}
+module.exports = {formatDate, formatDuration, showError, readTimeFrame}

@@ -21,17 +21,18 @@ pump(
 			const s = schedule.sequence[i]
 			let {departure, arrival} = schedule.sequence[i]
 
-			if (('departure' in s) && !('arrival' in s)) arrival = departure
-			else if (('arrival' in s) && !('departure' in s)) departure = arrival
-			else if (!('departure' in s) && !('arrival' in s)) {
+			if (!('departure' in s) && !('arrival' in s)) {
 				console.error(`Stopover ${i} of schedule ${schedule.id} has no arrival and no departure.`)
 				continue
 			}
 
+			if (('departure' in s) && !('arrival' in s)) arrival = departure
+			else if (('arrival' in s) && !('departure' in s)) departure = arrival
+
 			this.push({
 				trip_id: schedule.route.id,
-				arrival_time: arrival ? formatTime(arrival * 1000) : '',
-				departure_time: departure ? formatTime(departure * 1000) : '',
+				arrival_time: formatDuration(arrival * 1000),
+				departure_time: formatDuration(departure * 1000),
 				stop_id: schedule.route.stops && schedule.route.stops[i] || null,
 				stop_sequence: i + 1,
 				timepoint: 1

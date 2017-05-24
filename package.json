@@ -27,6 +27,7 @@
 		"stops": "node build/stops.js > dest/stops.txt",
 		"routes": "node build/routes.js > dest/routes.txt",
 		"trips": "node build/trips.js > dest/trips.txt",
-		"stop-times": "node build/stop-times.js > dest/stop_times.txt"
+		"stop-times": "node build/stop-times.js > dest/stop_times.txt",
+		"calendar": "node build/calendar.js > dest/calendar.txt"
 	}
 }

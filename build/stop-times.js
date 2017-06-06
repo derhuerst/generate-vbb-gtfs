@@ -6,7 +6,7 @@ const trips = require('vbb-trips')
 const through = require('through2')
 const stations = require('vbb-stations/data.json')
 const csv = require('csv-write-stream')
-const {formatTime, showError} = require('./lib')
+const {formatTime, formatDuration, showError} = require('./lib')
 
 const stationOf = {}
 for (let id in all) {

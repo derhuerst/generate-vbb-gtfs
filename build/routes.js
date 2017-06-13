@@ -19,11 +19,14 @@ const typesByProduct = {
 pump(
 	lines('all'),
 	through.obj((line, _, cb) => {
+		if ('number' !== typeof typesByProduct[line.product]) {
+			console.error('unsuported product', line.product)
+		}
 		cb(null, {
 			route_id: line.id,
 			agency_id: line.operator.id || line.operator,
 			route_short_name: line.name,
-			route_long_name: line.name, // todo
+			route_long_name: null, // todo
 			route_type: typesByProduct[line.product]
 			// todo: route_color, route_text_color
 		})

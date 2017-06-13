@@ -32,6 +32,7 @@ pump(
 			location_type: 1,
 			parent_station: '',
 			stop_timezone: 'Europe/Berlin'
+			// Even if stop_timezone values are provided in stops.txt, the times in stop_times.txt should continue to be specified as time since midnight in the timezone specified by agency_timezone in agency.txt. This ensures that the time values in a trip always increase over the course of a trip, regardless of which timezones the trip crosses.
 			// todo: wheelchair_boarding
 		})
 
@@ -44,9 +45,7 @@ pump(
 				stop_lon: stop.coordinates.longitude,
 				// todo: zone_id, zone_url
 				location_type: 0,
-				parent_station: station.id,
-				stop_timezone: 'Europe/Berlin'
-				// Even if stop_timezone values are provided in stops.txt, the times in stop_times.txt should continue to be specified as time since midnight in the timezone specified by agency_timezone in agency.txt. This ensures that the time values in a trip always increase over the course of a trip, regardless of which timezones the trip crosses.
+				parent_station: station.id
 				// todo: wheelchair_boarding
 			})
 		}

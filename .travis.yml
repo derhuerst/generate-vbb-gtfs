@@ -9,4 +9,4 @@ node_js:
   - 'stable'
 script:
   - npm run build
-  - bin/feedvalidator.py -m ./dest
+  - bin/feedvalidator.py --memory_db --output=CONSOLE ./dest

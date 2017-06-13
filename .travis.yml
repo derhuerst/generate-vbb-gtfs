@@ -1,13 +1,15 @@
 sudo: false
 language: node_js
+before_install:
+  - pip install --upgrade pip
 install:
   - npm i
-  - pip install --user --upgrade transitfeed
+  - pip install --upgrade transitfeed
 node_js:
   - 'stable'
   - '7'
   - '6'
 before_script:
-  ls -al .
+  - feedvalidator.py -h
 script:
   - npm run build

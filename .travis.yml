@@ -1,8 +1,12 @@
 sudo: false
 language: node_js
+install:
+  - pip install --user virtualenv
+  - virtualenv .
+  - bin/pip install --upgrade transitfeed pytz
+  - npm i
 node_js:
   - 'stable'
-  - '7'
-  - '6'
 script:
   - npm run build
+  - bin/feedvalidator.py --memory_db --output=CONSOLE ./dest

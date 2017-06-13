@@ -1,8 +1,13 @@
 sudo: false
 language: node_js
+install:
+  - npm i
+  - pip install --user --upgrade transitfeed
 node_js:
   - 'stable'
   - '7'
   - '6'
+before_script:
+  ls -al .
 script:
   - npm run build

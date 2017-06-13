@@ -2,6 +2,7 @@ sudo: false
 language: node_js
 install:
   - npm i
+  - pip install virtualenv
   - virtualenv .
   - bin/pip install --upgrade transitfeed
 node_js:

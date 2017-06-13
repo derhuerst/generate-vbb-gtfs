@@ -1,7 +1,5 @@
 sudo: false
 language: node_js
-before_install:
-  - sudo pip install --upgrade pip
 install:
   - npm i
   - pip install --upgrade transitfeed

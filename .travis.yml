@@ -7,7 +7,6 @@ install:
   - bin/pip install --upgrade transitfeed
 node_js:
   - 'stable'
-before_script:
-  - bin/feedvalidator.py -h
 script:
   - npm run build
+  - bin/feedvalidator.py -m ./dest

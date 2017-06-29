@@ -10,12 +10,20 @@ const formatDate = (d) => {
 	].join('')
 }
 
+const second = 1000
+const minute = 60 * second
+const hour = 60 * minute
+
 const formatDuration = (ms) => {
-	return [
-		Math.floor(ms / 1000 / 60 / 60),
-		('0' + Math.floor(ms / 1000 / 60)).slice(-2),
-		('0' + Math.floor(ms / 1000)).slice(-2)
-	].join(':')
+	const res = []
+
+	res.push(Math.floor(ms / hour))
+	ms = ms % hour
+	res.push(('0' + Math.floor(ms / minute)).slice(-2))
+	ms = ms % minute
+	res.push(('0' + Math.floor(ms / seconds)).slice(-2))
+
+	return res.join(':')
 }
 
 const showError = (err) => {

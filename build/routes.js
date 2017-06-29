@@ -20,7 +20,7 @@ pump(
 	lines('all'),
 	through.obj((line, _, cb) => {
 		if ('number' !== typeof typesByProduct[line.product]) {
-			console.error('unsuported product', line.product)
+			console.error('unsupported product', line.product, 'line', line.id)
 		}
 		cb(null, {
 			route_id: line.id,

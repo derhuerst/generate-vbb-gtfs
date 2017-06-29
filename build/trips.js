@@ -21,7 +21,7 @@ pump(
 		const lastStation = stations[stationOf[stops[stops.length - 1]]]
 		cb(null, {
 			route_id: schedule.route.line.id || schedule.route.line,
-			// todo: service_id
+			service_id: schedule.id,
 			trip_id: schedule.route.id,
 			trip_headsign: '→ ' + lastStation.name
 			// todo: trip_short_name, direction_id, shape_id

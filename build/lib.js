@@ -21,7 +21,7 @@ const formatDuration = (ms) => {
 	ms = ms % hour
 	res.push(('0' + Math.floor(ms / minute)).slice(-2))
 	ms = ms % minute
-	res.push(('0' + Math.floor(ms / seconds)).slice(-2))
+	res.push(('0' + Math.floor(ms / second)).slice(-2))
 
 	return res.join(':')
 }

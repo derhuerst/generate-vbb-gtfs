@@ -6,7 +6,10 @@ install:
   - bin/pip install --upgrade transitfeed pytz
   - npm i
 node_js:
-  - 'stable'
+#  - 'stable'
+  - '7'
+  - '6'
 script:
   - npm run build
+  - ls -lh dest
   - bin/feedvalidator.py --memory_db --output=CONSOLE ./dest

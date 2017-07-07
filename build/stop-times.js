@@ -1,18 +1,10 @@
 'use strict'
 
-const all = require('vbb-stations/full.json')
 const pump = require('pump')
 const trips = require('vbb-trips')
 const through = require('through2')
-const stations = require('vbb-stations/data.json')
 const csv = require('csv-write-stream')
-const {formatTime, formatDuration, showError} = require('./lib')
-
-const stationOf = {}
-for (let id in all) {
-	stationOf[id] = id
-	for (let stop of all[id].stops) stationOf[stop.id] = id
-}
+const {formatDuration, showError} = require('./lib')
 
 pump(
 	trips.schedules('all'),

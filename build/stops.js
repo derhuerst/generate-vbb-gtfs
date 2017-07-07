@@ -1,6 +1,6 @@
 'use strict'
 
-const stations = require('vbb-stations/full.json')
+const stations = require('./stations.json')
 const pump = require('pump')
 const from = require('from2')
 const through = require('through2')

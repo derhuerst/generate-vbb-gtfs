@@ -17,25 +17,22 @@ for (let id1 in stations) {
 
 		const res = analyze(s1, s2)
 		if (!res) continue
+		const {op, src, dest, useStationName} = res
+		if (op !== analyze.MERGE) {
+			console.error('unsupported merge operation: ' + op)
+			continue
+		}
 
-		if (res[0] === analyze.MERGE) {
-			console.info('merging', s1.id, s1.name, 'into', s2.id, s2.name)
+		const name = useStationName ? dest.name : src.name
+		console.info(src.id, src.name, 'as', name, 'into', dest.id, dest.name)
 
-			for (let stop of s1.stops) stop.station = s2.id
-			s2.stops = s2.stops.concat(s1.stops)
-			mapping.map(s1.id, s2.id)
-			delete stations[s1.id]
-		} else if (res[0] === analyze.MERGE_AS_STOP) {
-			const src = res[1]
-			const dest = res[2]
-			console.info('adding', src.id, src.name, 'stops to', dest.id, dest.name)
-
-			// todo: what is the difference to MERGE?
-			for (let stop of src.stops) stop.station = dest.id
-			dest.stops = dest.stops.concat(src.stops)
-			mapping.map(src.id, dest.id)
-			delete stations[src.id]
-		} else console.error('unsupported merge operation: ' + res[0])
+		for (let stop of src.stops) {
+			stop.station = dest.id
+			if (useStationName) stop.name = dest.name
+		}
+		dest.stops = dest.stops.concat(src.stops)
+		mapping.map(src.id, dest.id)
+		delete stations[src.id]
 	}
 }
 

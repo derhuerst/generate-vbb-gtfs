@@ -20,7 +20,7 @@
 		"redrun": "^5.9.12",
 		"through2": "^2.0.3",
 		"vbb-lines": "^3.2.0",
-		"vbb-stations": "^5.2.0",
+		"vbb-stations": "5.3.0",
 		"vbb-trips": "^2.4.1"
 	},
 	"scripts": {

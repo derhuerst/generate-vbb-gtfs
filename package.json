@@ -19,7 +19,7 @@
 		"lodash.omit": "^4.5.0",
 		"merge-vbb-stations": "^0.2.0",
 		"pump": "^1.0.2",
-		"redrun": "^5.9.12",
+		"redrun": "^5.9.17",
 		"through2": "^2.0.3",
 		"vbb-lines": "^3.2.0",
 		"vbb-stations": "^5.2.0",

@@ -23,7 +23,7 @@
 		"through2": "^2.0.3",
 		"vbb-lines": "^3.2.0",
 		"vbb-stations": "^5.2.0",
-		"vbb-trips": "^2.4.1"
+		"vbb-trips": "2.5.0"
 	},
 	"scripts": {
 		"build": "npm run merge-stations && redrun -p feed-info stops routes trips stop-times calendar calendar-dates agency",

@@ -10,6 +10,6 @@ node_js:
   - '7'
   - '6'
 script:
-  - npm run build
+  - echo todo; exit 1
   - ls -lh dest
   - bin/feedvalidator.py --memory_db --output=CONSOLE ./dest

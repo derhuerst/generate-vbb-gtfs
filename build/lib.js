@@ -1,6 +1,8 @@
 'use strict'
 
 const trips = require('vbb-trips')
+const fs = require('fs')
+const path = require('path')
 
 const formatDate = (d) => {
 	return [
@@ -24,12 +26,6 @@ const formatDuration = (ms) => {
 	res.push(('0' + Math.floor(ms / second)).slice(-2))
 
 	return res.join(':')
-}
-
-const showError = (err) => {
-	if (!err) return
-	console.error(err)
-	process.exit(1)
 }
 
 const readTimeFrame = () => {
@@ -56,4 +52,14 @@ const readTimeFrame = () => {
 	})
 }
 
-module.exports = {formatDate, formatDuration, showError, readTimeFrame}
+const writeFile = (file, data) => {
+	return new Promise((yay, nay) => {
+		const dest = path.join(__dirname, file)
+		fs.writeFile(dest, JSON.stringify(data), (err) => {
+			if (err) nay(err)
+			else yay()
+		})
+	})
+}
+
+module.exports = {formatDate, formatDuration, showError, readTimeFrame, writeFile}

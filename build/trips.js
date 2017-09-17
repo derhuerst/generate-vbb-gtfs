@@ -5,22 +5,21 @@ const trips = require('vbb-trips')
 const through = require('through2')
 const csv = require('csv-write-stream')
 
-const stations = require('./stations.json')
-const mapping = require('./stations.map.json')
+const {fileWriteStream} = require('./lib')
 
-const stationOf = {}
-for (let id in stations) {
-	stationOf[id] = id
-	for (let stop of stations[id].stops) stationOf[stop.id] = id
-}
+const buildTrips = (file, stations, stationsMap) => {
+	const stationOf = {}
+	for (let id in stations) {
+		stationOf[id] = id
+		for (let stop of stations[id].stops) stationOf[stop.id] = id
+	}
 
-const buildTrips = (file) => {
 	return new Promise((yay, nay) => {
 		pump(
 			trips.schedules('all'),
 			through.obj((schedule, _, cb) => {
 				const lastStopId = schedule.route.stops[schedule.route.stops.length - 1]
-				const lastStationId = mapping[stationOf[lastStopId]]
+				const lastStationId = stationsMap[stationOf[lastStopId]]
 				const lastStation = stations[lastStationId]
 
 				cb(null, {
@@ -33,7 +32,7 @@ const buildTrips = (file) => {
 				})
 			}),
 			csv(),
-			process.stdout, // todo
+			fileWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

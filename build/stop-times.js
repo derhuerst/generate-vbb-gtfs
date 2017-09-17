@@ -4,7 +4,8 @@ const pump = require('pump')
 const trips = require('vbb-trips')
 const through = require('through2')
 const csv = require('csv-write-stream')
-const {formatDuration} = require('./lib')
+
+const {formatDuration, fileWriteStream} = require('./lib')
 
 const buildStopTimes = (file) => {
 	return new Promise((yay, nay) => {
@@ -37,7 +38,7 @@ const buildStopTimes = (file) => {
 				cb()
 			}),
 			csv(),
-			process.stdout, // todo
+			fileWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

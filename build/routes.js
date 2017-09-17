@@ -5,6 +5,8 @@ const lines = require('vbb-lines')
 const through = require('through2')
 const csv = require('csv-write-stream')
 
+const {fileWriteStream} = require('./lib')
+
 // todo: https://developers.google.com/transit/gtfs/reference/extended-route-types
 const typesByProduct = {
 	regional: 2,
@@ -33,7 +35,7 @@ const buildRoutes = (file) => {
 				})
 			}),
 			csv(),
-			process.stdout, // todo
+			fileWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

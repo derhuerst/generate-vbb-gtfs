@@ -52,6 +52,16 @@ const readTimeFrame = () => {
 	})
 }
 
+const readFile = (file) => {
+	return new Promise((yay, nay) => {
+		const src = path.join(__dirname, file)
+		fs.readFile(src, {encoding: 'utf8'}, (err, data) => {
+			if (err) nay(err)
+			else yay(data)
+		})
+	})
+}
+
 const writeFile = (file, data) => {
 	return new Promise((yay, nay) => {
 		const dest = path.join(__dirname, file)
@@ -62,4 +72,20 @@ const writeFile = (file, data) => {
 	})
 }
 
-module.exports = {formatDate, formatDuration, showError, readTimeFrame, writeFile}
+const fileReadStream = (file) => {
+	return fs.createReadStream(path.join(__dirname, file))
+}
+
+const fileWriteStream = (file) => {
+	return fs.createWriteStream(path.join(__dirname, file))
+}
+
+module.exports = {
+	formatDate,
+	formatDuration,
+	readTimeFrame,
+	readFile,
+	writeFile,
+	fileReadStream,
+	fileWriteStream
+}

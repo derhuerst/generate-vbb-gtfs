@@ -3,9 +3,8 @@
 const keyMap = require('key-map')
 const stations = require('vbb-stations/full.json')
 const analyze = require('merge-vbb-stations')
-const {writeFile} = require('./lib')
 
-const mergeStations = (stationsFile, mapFile) => {
+const mergeStations = () => {
 	const mapping = keyMap(Object.keys(stations))
 	const nrOfStationsBefore = Object.keys(stations).length
 
@@ -39,10 +38,7 @@ const mergeStations = (stationsFile, mapFile) => {
 	const nrOfStationsAfter = Object.keys(stations).length
 	console.error('removed', nrOfStationsBefore - nrOfStationsAfter, 'stations')
 
-	return writeFile(stationsFile, stations)
-	.then(() => {
-		return writeFile(mapFile, mapping.toObject())
-	})
+	return Promise.resolve({stations, map: mapping.toObject()})
 }
 
 module.exports = mergeStations

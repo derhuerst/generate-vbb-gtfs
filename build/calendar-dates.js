@@ -4,7 +4,9 @@ const pump = require('pump')
 const trips = require('vbb-trips')
 const through = require('through2')
 const csv = require('csv-write-stream')
+
 const readSchedule = require('./read-schedule')
+const {fileWriteStream} = require('./lib')
 
 const buildCalendarDates = (file) => {
 	return new Promise((yay, nay) => {
@@ -24,7 +26,7 @@ const buildCalendarDates = (file) => {
 				cb()
 			}),
 			csv(),
-			process.stdout, // todo
+			fileWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

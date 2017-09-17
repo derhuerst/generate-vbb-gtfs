@@ -1,12 +1,13 @@
 'use strict'
 
-const stations = require('./stations.json')
 const pump = require('pump')
 const from = require('from2')
 const through = require('through2')
 const csv = require('csv-write-stream')
 
-const readStations = () => {
+const {fileWriteStream} = require('./lib')
+
+const oneStationAtATime = (stations) => {
 	const keys = (function* (obj) {
 		for (let key in obj) yield key
 	})(stations)
@@ -18,10 +19,10 @@ const readStations = () => {
 	})
 }
 
-const buildStops = (file) => {
+const buildStops = (file, stations) => {
 	return new Promise((yay, nay) => {
 		pump(
-			readStations(),
+			oneStationAtATime(stations),
 			through.obj(function (station, _, cb) {
 				this.push({
 					stop_id: station.id,
@@ -54,7 +55,7 @@ const buildStops = (file) => {
 				cb()
 			}),
 			csv(),
-			process.stdout, // todo
+			fileWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

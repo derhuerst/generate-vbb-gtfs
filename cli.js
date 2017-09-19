@@ -2,6 +2,7 @@
 'use strict'
 
 const mri = require('mri')
+const path = require('path')
 const pSeries = require('p-series')
 
 const pkg = require('./package.json')
@@ -25,8 +26,10 @@ if (argv.help || argv.h) {
 	process.stdout.write(`
 Usage:
     generate-vbb-gtfs
+Options:
+	--dir  -d  Directory to create the files in. Default: $CWD
 Examples:
-    generate-vbb-gtfs
+    generate-vbb-gtfs -d path/to/dest
 \n`)
 	process.exit(0)
 }
@@ -36,6 +39,9 @@ if (argv.version || argv.v) {
 	process.exit(0)
 }
 
+const dir = argv.dir || argv.d
+const dest = dir ? path.join('.', dir) : '.'
+
 const showError = (err) => {
 	console.error(err)
 	process.exit(1)
@@ -44,13 +50,13 @@ const showError = (err) => {
 mergeStations()
 .then(({stations, map}) => {
 	return pSeries([
-		() => buildCalendar('calendar.txt'),
-		() => buildCalendarDates('calendar-dates.txt'),
-		() => buildFeedInfo('feed-info.txt'),
-		() => buildRoutes('routes.txt'),
-		() => buildStopTimes('stop-times.txt'),
-		() => buildStops('stops.txt', stations),
-		() => buildTrips('trips.txt', stations, map)
+		() => buildCalendar(path.join(dest, 'calendar.txt')),
+		() => buildCalendarDates(path.join(dest, 'calendar-dates.txt')),
+		() => buildFeedInfo(path.join(dest, 'feed-info.txt')),
+		() => buildRoutes(path.join(dest, 'routes.txt')),
+		() => buildStopTimes(path.join(dest, 'stop-times.txt')),
+		() => buildStops(path.join(dest, 'stops.txt'), stations),
+		() => buildTrips(path.join(dest, 'trips.txt'), stations, map)
 	])
 })
 .catch(showError)

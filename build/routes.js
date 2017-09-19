@@ -4,8 +4,7 @@ const pump = require('pump')
 const lines = require('vbb-lines')
 const through = require('through2')
 const csv = require('csv-write-stream')
-
-const {fileWriteStream} = require('./lib')
+const fs = require('fs')
 
 // todo: https://developers.google.com/transit/gtfs/reference/extended-route-types
 const typesByProduct = {
@@ -35,7 +34,7 @@ const buildRoutes = (file) => {
 				})
 			}),
 			csv(),
-			fileWriteStream(file),
+			fs.createWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

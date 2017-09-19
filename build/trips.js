@@ -4,8 +4,7 @@ const pump = require('pump')
 const trips = require('vbb-trips')
 const through = require('through2')
 const csv = require('csv-write-stream')
-
-const {fileWriteStream} = require('./lib')
+const fs = require('fs')
 
 const buildTrips = (file, stations, stationsMap) => {
 	const stationOf = {}
@@ -32,7 +31,7 @@ const buildTrips = (file, stations, stationsMap) => {
 				})
 			}),
 			csv(),
-			fileWriteStream(file),
+			fs.createWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

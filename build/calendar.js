@@ -5,9 +5,9 @@ const trips = require('vbb-trips')
 const through = require('through2')
 const omit = require('lodash.omit')
 const csv = require('csv-write-stream')
+const fs = require('fs')
 
 const readSchedule = require('./read-schedule')
-const {fileWriteStream} = require('./lib')
 
 const buildCalendar = (file) => {
 	return new Promise((yay, nay) => {
@@ -18,7 +18,7 @@ const buildCalendar = (file) => {
 				cb(null, omit(sched, ['exceptions']))
 			}),
 			csv(),
-			fileWriteStream(file),
+			fs.createWriteStream(file),
 			(err) => {
 				if (err) nay(err)
 				else yay()

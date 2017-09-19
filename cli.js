@@ -2,8 +2,17 @@
 'use strict'
 
 const mri = require('mri')
+const pSeries = require('p-series')
 
 const pkg = require('./package.json')
+const mergeStations = require('./build/merge-stations')
+const buildCalendar = require('./build/calendar')
+const buildCalendarDates = require('./build/calendar-dates')
+const buildFeedInfo = require('./build/feed-info')
+const buildRoutes = require('./build/routes')
+const buildStopTimes = require('./build/stop-times')
+const buildStops = require('./build/stops')
+const buildTrips = require('./build/trips')
 
 const argv = mri(process.argv.slice(2), {
 	boolean: [
@@ -32,4 +41,16 @@ const showError = (err) => {
 	process.exit(1)
 }
 
-// todo
+mergeStations()
+.then(({stations, map}) => {
+	return pSeries([
+		() => buildCalendar('calendar.txt'),
+		() => buildCalendarDates('calendar-dates.txt'),
+		() => buildFeedInfo('feed-info.txt'),
+		() => buildRoutes('routes.txt'),
+		() => buildStopTimes('stop-times.txt'),
+		() => buildStops('stops.txt', stations),
+		() => buildTrips('trips.txt', stations, map)
+	])
+})
+.catch(showError)

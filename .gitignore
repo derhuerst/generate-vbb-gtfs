@@ -4,7 +4,3 @@ Thumbs.db
 .nvm-version
 node_modules
 npm-debug.log
-
-build/stations.json
-build/stations.map.json
-dest

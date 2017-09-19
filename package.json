@@ -33,6 +33,7 @@
 		"lodash.omit": "^4.5.0",
 		"merge-vbb-stations": "^0.2.0",
 		"mri": "^1.1.0",
+		"p-series": "^1.0.0",
 		"pump": "^1.0.2",
 		"redrun": "^5.9.12",
 		"through2": "^2.0.3",

@@ -37,7 +37,7 @@
 		"pump": "^1.0.2",
 		"redrun": "^5.9.12",
 		"through2": "^2.0.3",
-		"vbb-lines": "^3.2.0",
+		"vbb-lines": "^3.6.0",
 		"vbb-stations": "^5.2.0",
 		"vbb-trips": "^2.4.1"
 	}

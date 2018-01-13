@@ -19,13 +19,19 @@ const mergeStations = () => {
 		console.info(src.id, src.name, 'as', stopName, 'into', dest.id, dest.name)
 
 		let newDest = mergedStations[dest.id]
-		if (!newDest) newDest = mergedStations[dest.id] = Object.assign({}, dest)
+		if (!newDest) {
+			newDest = mergedStations[dest.id] = Object.assign({}, dest)
+			newDest.stops = Array.from(dest.stops)
+		}
 
 		for (let stop of src.stops) {
-			stop.station = dest.id
-			stop.name = stopName
+			if (newDest.stops.some(s => s.id === stop.id)) continue
+			const newStop = Object.assign({}, stop, {
+				station: newDest.id,
+				name: stopName
+			})
+			newDest.stops.push(newStop)
 		}
-		newDest.stops = dest.stops.concat(src.stops)
 		delete mergedStations[src.id]
 	}
 

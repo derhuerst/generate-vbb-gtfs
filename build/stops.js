@@ -27,8 +27,8 @@ const buildStops = (file, stations) => {
 					stop_id: station.id,
 					// todo: stop_code
 					stop_name: station.name,
-					stop_lat: station.coordinates.latitude,
-					stop_lon: station.coordinates.longitude,
+					stop_lat: station.location.latitude,
+					stop_lon: station.location.longitude,
 					// todo: zone_id, zone_url
 					location_type: 1,
 					parent_station: '',
@@ -42,8 +42,8 @@ const buildStops = (file, stations) => {
 						stop_id: stop.id,
 						// todo: stop_code
 						stop_name: stop.name,
-						stop_lat: stop.coordinates.latitude,
-						stop_lon: stop.coordinates.longitude,
+						stop_lat: stop.location.latitude,
+						stop_lon: stop.location.longitude,
 						// todo: zone_id, zone_url
 						location_type: 0,
 						parent_station: station.id

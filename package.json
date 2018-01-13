@@ -28,17 +28,16 @@
 	"dependencies": {
 		"csv-write-stream": "^2.0.0",
 		"from2": "^2.3.0",
-		"key-map": "^1.0.0",
 		"lodash.difference": "^4.5.0",
 		"lodash.omit": "^4.5.0",
 		"merged-vbb-stations": "^1.2.0",
 		"mri": "^1.1.0",
 		"p-series": "^1.0.0",
-		"pump": "^1.0.2",
-		"redrun": "^5.9.12",
+		"pump": "^2.0.0",
+		"redrun": "^5.10.0",
 		"through2": "^2.0.3",
-		"vbb-lines": "^3.2.0",
-		"vbb-stations": "^5.2.0",
-		"vbb-trips": "^2.4.1"
+		"vbb-lines": "^3.9.0",
+		"vbb-stations": "^6.1.0",
+		"vbb-trips": "^2.10.0"
 	}
 }
